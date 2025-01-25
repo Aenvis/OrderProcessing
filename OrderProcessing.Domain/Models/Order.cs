@@ -10,10 +10,11 @@
 
 	public class Order
 	{
-		public Guid Id { get; private set; } = Guid.NewGuid();
-		public string CustomerName { get; private set; }
-		public OrderStatus Status { get; private set; } = OrderStatus.Created;
-		public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+		public Guid Id { get; set; } = Guid.NewGuid();
+		public string CustomerName { get; set; }
+		public OrderStatus Status { get; set; } = OrderStatus.Created;
+		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+		public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
 
 		public Order(string customerName)
 		{

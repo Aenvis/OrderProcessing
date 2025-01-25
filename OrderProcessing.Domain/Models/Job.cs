@@ -10,12 +10,13 @@
 
 	public class Job
 	{
-		public Guid Id { get; } = Guid.NewGuid();
-		public Guid OrderId { get; }
-		public JobStatus Status { get; private set; } = JobStatus.Queued;
-		public int AttemptCount { get; private set; }
-		public DateTime CreatedAt { get; } = DateTime.UtcNow;
-		public DateTime LastAttemptAt { get; private set; }
+		public Guid Id { get; set; } = Guid.NewGuid();
+		public Guid OrderId { get; set; }
+		public virtual Order Order { get; set; }
+		public JobStatus Status { get; set; } = JobStatus.Queued;
+		public int AttemptCount { get; set; }
+		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+		public DateTime LastAttemptAt { get; set; }
 
 		public Job(Guid orderId) => OrderId = orderId;
 
