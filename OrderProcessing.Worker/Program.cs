@@ -1,3 +1,5 @@
+using OrderProcessing.Infrastructure;
+
 namespace OrderProcessing.Worker
 {
 	public class Program
@@ -5,7 +7,9 @@ namespace OrderProcessing.Worker
 		public static void Main(string[] args)
 		{
 			var builder = Host.CreateApplicationBuilder(args);
-			//builder.Services.AddHostedService<Worker>();
+
+			builder.Services.AddInfrastructure(builder.Configuration);
+			builder.Services.AddHostedService<Worker>();
 
 			var host = builder.Build();
 			host.Run();
