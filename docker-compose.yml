@@ -1,0 +1,6 @@
+services:
+  orderprocessing.api:
+    image: ${DOCKER_REGISTRY-}orderprocessingapi
+    build:
+      context: .
+      dockerfile: OrderProcessing.Api/Dockerfile
