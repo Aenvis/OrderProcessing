@@ -60,7 +60,47 @@ OrderProcessing/
   - Background job processing
   - Queue polling implementation
 
+
 ## 🚀 Getting Started
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) (for local development)
+
+### Run the Full System
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/aenvis/OrderProcessing.git
+   cd OrderProcessing
+   ```
+
+2. Start all services (PostgreSQL, API, and Worker):
+   ```bash
+   docker-compose up --build -d
+   ```
+
+3. Apply database migrations (in a new terminal):
+   ```bash
+   docker-compose exec api dotnet ef database update --project OrderProcessing.Infrastructure --startup-project ../OrderProcessing.Api
+   ```
+
+4. The system is now ready:
+   - **API**: http://localhost:8080
+   - **PostgreSQL**: Available at `localhost:5432` (user: postgres, password: postgres)
+   - **Worker**: Running in background processing jobs
+
+### Test the System
+Create a test order:
+```bash
+curl -X POST http://localhost:8080/api/orders \
+  -H "Content-Type: application/json" \
+  -d '{"customerName":"Test Customer","items":[{"productName":"Sample","quantity":1,"unitPrice":29.99}]}'
+```
+
+### Stop the Services
+```bash
+docker-compose down
+```
 
 ### Prerequisites
 - .NET 9 SDK
@@ -135,59 +175,3 @@ Content-Type: application/json
 - [ ] Add performance metrics
 - [ ] Containerize entire solution
 - [ ] Load testing scenarios
-
-
-
-## 🚀 Getting Started
-
-### Prerequisites
-- [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) (for local development)
-
-### Run the Full System
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/aenvis/OrderProcessing.git
-   cd OrderProcessing
-   ```
-
-2. Start all services (PostgreSQL, API, and Worker):
-   ```bash
-   docker-compose up --build -d
-   ```
-
-3. Apply database migrations (in a new terminal):
-   ```bash
-   docker-compose exec api dotnet ef database update --project OrderProcessing.Infrastructure --startup-project ../OrderProcessing.Api
-   ```
-
-4. The system is now ready:
-   - **API**: http://localhost:8080
-   - **PostgreSQL**: Available at `localhost:5432` (user: postgres, password: postgres)
-   - **Worker**: Running in background processing jobs
-
-### Test the System
-Create a test order:
-```bash
-curl -X POST http://localhost:8080/api/orders \
-  -H "Content-Type: application/json" \
-  -d '{"customerName":"Test Customer","items":[{"productName":"Sample","quantity":1,"unitPrice":29.99}]}'
-```
-
-### Stop the Services
-```bash
-docker-compose down
-```
-
-## Development Workflow
-For local development without Docker:
-```bash
-# Start dependencies
-docker-compose up -d postgres
-
-# Run API
-dotnet run --project OrderProcessing.Api
-
-# Run Worker
-dotnet run --project OrderProcessing.Worker
-```
