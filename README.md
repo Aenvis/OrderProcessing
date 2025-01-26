@@ -171,7 +171,6 @@ Content-Type: application/json
 ## 🚧 Future Improvements
 
 - [ ] Add authentication/authorization
-- [ ] Implement OpenAPI documentation
 - [ ] Add performance metrics
-- [ ] Containerize entire solution
+- [x] Containerize entire solution
 - [ ] Load testing scenarios
