@@ -10,7 +10,6 @@ namespace OrderProcessing.Worker
 		private readonly ILogger<OrderProcessingWorker> _logger;
 		private readonly IAmazonSQS _sqsClient;
 		private readonly IJobRepository _jobRepository;
-		private readonly IQueueService _queueService;
 		private readonly string _queueUrl;
 
 
@@ -20,7 +19,6 @@ namespace OrderProcessing.Worker
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			_sqsClient = sqsClient ?? throw new ArgumentNullException(nameof(sqsClient));
 			_jobRepository = jobRepository ?? throw new ArgumentNullException(nameof(jobRepository));
-			_queueService = queueService ?? throw new ArgumentNullException(nameof(queueService));
 			_queueUrl = configuration["Services:QueueUrl"] ?? throw new ArgumentNullException("Services:QueueUrl is not configured");
 		}
 
