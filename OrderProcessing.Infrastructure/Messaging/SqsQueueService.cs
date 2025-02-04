@@ -2,8 +2,8 @@
 using Amazon.SQS.Model;
 using FluentResults;
 using Microsoft.Extensions.Configuration;
+using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Domain.Errors;
-using OrderProcessing.Domain.Interfaces;
 
 namespace OrderProcessing.Infrastructure.Messaging
 {
@@ -15,7 +15,7 @@ namespace OrderProcessing.Infrastructure.Messaging
 		public SqsQueueService(IAmazonSQS sqs, IConfiguration config)
 		{
 			_sqs = sqs ?? throw new ArgumentNullException(nameof(sqs));
-			_queueUrl = config["AWS:QueueUrl"];
+			_queueUrl = config["Services:QueueUrl"];
 		}
 
 		public async Task<Result> EnqueueJobAsync(Guid jobId)
@@ -34,11 +34,6 @@ namespace OrderProcessing.Infrastructure.Messaging
 			{
 				return Result.Fail(DomainErrors.QueueOperationFailed(e));
 			}
-		}
-
-		public async Task<Result> RequeueJobAsync(Guid jobId)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

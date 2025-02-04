@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OrderProcessing.Domain.Interfaces;
+using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Infrastructure.Data;
 using OrderProcessing.Infrastructure.Messaging;
 

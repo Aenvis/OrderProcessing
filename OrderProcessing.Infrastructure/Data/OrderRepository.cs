@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.EntityFrameworkCore;
+using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Domain.Errors;
-using OrderProcessing.Domain.Interfaces;
 using OrderProcessing.Domain.Models;
 
 namespace OrderProcessing.Infrastructure.Data
