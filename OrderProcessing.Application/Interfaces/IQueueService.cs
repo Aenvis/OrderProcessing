@@ -1,10 +1,9 @@
 ﻿using FluentResults;
 
-namespace OrderProcessing.Domain.Interfaces
+namespace OrderProcessing.Application.Interfaces
 {
 	public interface IQueueService
 	{
 		Task<Result> EnqueueJobAsync(Guid jobId);
-		Task<Result> RequeueJobAsync(Guid jobId);
 	}
 }

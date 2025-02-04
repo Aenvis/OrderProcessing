@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OrderProcessing.Api.Endpoints.Orders
+namespace OrderProcessing.Application.DTOs.Orders
 {
 	public record CreateOrderRequest(
 		[Required(ErrorMessage = "Customer name is required")]

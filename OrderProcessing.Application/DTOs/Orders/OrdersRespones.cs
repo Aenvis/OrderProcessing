@@ -1,4 +1,4 @@
-﻿namespace OrderProcessing.Api.Endpoints.Orders
+﻿namespace OrderProcessing.Application.DTOs.Orders
 {
 	public record CreateOrderResponse(
 		Guid OrderId,
